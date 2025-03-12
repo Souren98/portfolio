@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import img1 from "../images/calender.jpeg";
 import img2 from "../images/ecommerce.jpeg";
-import img3 from "../images/portfolio.jpeg";
+import Quiz from "../images/Quiz.png"
 import Link from "next/link";
 
 export default function Projects() {
@@ -35,12 +35,12 @@ export default function Projects() {
     },
     {
       id: 3,
-      title: "Portfolio website",
+      title: "Quiz website",
       description:
         "A task management application designed to help users organize their daily tasks, built with React Native and Firebase for real-time updates.",
-      image: img3, 
+      image: Quiz, 
       color: "#4caf50",
-        varcellink:"https://calendar-cyan-six.vercel.app"
+        varcellink:"https://quizz-taupe-phi.vercel.app/"
     },
   ];
 
