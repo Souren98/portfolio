@@ -71,7 +71,7 @@ export default function Hero() {
           src={profilePic}
           alt="Souren Lahiri"
           width={450}
-          height={410}
+          height={450}
           style={{
             borderRadius: "50%",
             border: "5px solid #f50057",
