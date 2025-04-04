@@ -2,7 +2,19 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { AppBar, Toolbar, Typography, IconButton, Box, Button, Drawer, List,  } from '@mui/material';
+import { 
+  AppBar, 
+  Toolbar, 
+  Typography, 
+  IconButton, 
+  Box, 
+  Button, 
+  Drawer, 
+  List, 
+  ListItem,
+  ListItemText,
+  Divider
+} from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 
 const navItems = [
@@ -13,7 +25,6 @@ const navItems = [
 ];
 
 const Header: React.FC = () => {
-  
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
@@ -21,18 +32,34 @@ const Header: React.FC = () => {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        MyApp
+    <Box 
+      onClick={handleDrawerToggle}
+      sx={{ 
+        width: 250,
+        height: '100%',
+        background: 'linear-gradient(135deg, #ff512f, #dd2476)',
+        color: 'white'
+      }}
+    >
+      <Typography variant="h6" sx={{ my: 2, textAlign: 'center' }}>
+        Portfolio
       </Typography>
+      <Divider sx={{ backgroundColor: 'rgba(255, 255, 255, 0.2)' }} />
       <List>
         {navItems.map((item) => (
-          <Link key={item.path} href={item.path}>
-            {/* <ListItemButton component={Link} href={item.path} sx={{ textAlign: 'center' }}> */}
-              {/* <ListItemText primary={item.name} /> */}
-            {/* </ListItemButton> */}
-            {item.name}
-          </Link>
+          <ListItem 
+            key={item.path} 
+            component={Link} 
+            href={item.path}
+            sx={{
+              color: 'white',
+              '&:hover': {
+                backgroundColor: 'rgba(255, 255, 255, 0.1)'
+              }
+            }}
+          >
+            <ListItemText primary={item.name} />
+          </ListItem>
         ))}
       </List>
     </Box>
@@ -40,7 +67,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <AppBar position="static" sx={{background: "linear-gradient(135deg, #ff512f, #dd2476)"}}>
+      <AppBar position="static" sx={{ background: "linear-gradient(135deg, #ff512f, #dd2476)" }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Link href="/" style={{ textDecoration: 'none', color: 'inherit' }}>Portfolio</Link>
@@ -63,21 +90,27 @@ const Header: React.FC = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <Drawer
-        anchor="left"
-        open={mobileOpen}
-        onClose={handleDrawerToggle}
-        ModalProps={{
-          keepMounted: true,
-        }}
-        sx={{
-          display: { xs: 'block', sm: 'none' },
-          '& .MuiDrawer-paper': { boxSizing: 'border-box', width: 240 },
-        }}
-      >
-        {drawer}
-      </Drawer>
+      <Box component="nav">
+        <Drawer
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile
+          }}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': { 
+              boxSizing: 'border-box',
+              width: 250 
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Box>
     </>
   );
 }
+
 export default Header;
